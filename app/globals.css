@@ -1100,3 +1100,10 @@ details > summary.btn{display:inline-flex}
 .wp-forms{display:grid;gap:10px;border-top:1px solid var(--line);padding-top:12px}
 .wp-forms details summary{cursor:pointer;font-weight:600;font-size:14px}
 .sel-sm{min-height:36px;border-radius:10px;border:1px solid var(--line);padding:0 10px;font:inherit;font-size:14px;background:#fff}
+/* field training videos */
+.tx-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;margin-top:14px}
+.tx{margin:0;border-radius:14px;overflow:hidden;background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.08)}
+.tx video{display:block;width:100%;aspect-ratio:16/9;background:#06110c;object-fit:cover}
+.tx figcaption{padding:12px 14px;display:flex;flex-direction:column;gap:4px}
+.tx figcaption small{color:var(--lime,#a6d43a);font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+.tx figcaption b{font-size:15px;line-height:1.3}

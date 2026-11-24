@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { type Pkg, itemsOf, pctOf, posterOf, videoOf } from '@/lib/training';
+import { type Pkg, itemsOf, pctOf, posterOf, videoOf, extrasOf } from '@/lib/training';
 import { toggleItem } from '@/app/actions/training';
 import TrainingPlayer from './TrainingPlayer';
 
@@ -36,6 +36,10 @@ export function PkgView({ p, done, interactive }: { p: Pkg; done: Set<string>; i
             <ul>{l.body.map((b, j) => <li key={j}>{b}</li>)}</ul>
             <Tick item={it} on={on} label={on ? 'Okundu olarak işaretlendi' : 'Okudum, tamamladım'} interactive={interactive} />
           </details>); })}</div></section>
+      {extrasOf(p.key).length > 0 && <section className="card"><h2>Sahadan kısa eğitimler</h2><p className="muted">Günlük işletme pratiği için kısa, animasyonlu anlatımlar.</p>
+        <div className="tx-grid">{extrasOf(p.key).map((x) => (
+          <figure key={x.key} className="tx"><video controls preload="none" playsInline poster={posterOf(x.key)} src={videoOf(x.key)} />
+            <figcaption><small>{x.topic} · {x.minutes}</small><b>{x.title}</b></figcaption></figure>))}</div></section>}
       <section className="card"><h2>Hazırlık listesi</h2><p className="muted">Projenizin sağlıklı ilerlemesi için kendi tarafınızda yapmanız gerekenler.</p>
         <ul className="tv-check">{p.checklist.map((c, i) => { const it = `${p.key}:c:${i}`, on = done.has(it); return <li key={i}>{interactive ? <Tick item={it} on={on} label={c} interactive /> : <span className="tk"><span aria-hidden="true" />{c}</span>}</li>; })}</ul></section>
       <p className="hint">Eğitim içerikleri genel bilgilendirme amaçlıdır; projenize özel kararlar için proje ekibimize danışın.</p>

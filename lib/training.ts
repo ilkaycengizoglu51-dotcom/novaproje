@@ -487,3 +487,16 @@ export function packagesFor(types: string[]) {
 /** Items a package needs ticked: the video, each lesson and each checklist line. */
 export const itemsOf = (p: Pkg) => [`${p.key}:video`, ...p.lessons.map((l) => `${p.key}:l:${l.key}`), ...p.checklist.map((_, i) => `${p.key}:c:${i}`)];
 export const pctOf = (p: Pkg, done: Set<string>) => { const it = itemsOf(p); return Math.round((it.filter((x) => done.has(x)).length / it.length) * 100); };
+/** Short field videos shown under a package (not counted in progress). */
+export type Extra = { key: string; title: string; topic: string; minutes: string };
+export const EXTRAS: Record<string, Extra[]> = {
+  hayvancilik: [
+    { key: 'x-yem-deposu', title: 'Yem depoda neden bozulur?', topic: 'Yem deposu', minutes: '1:09' },
+    { key: 'x-gubre', title: 'Gübreden para kazanılır mı?', topic: 'Gübre yönetimi', minutes: '1:14' },
+    { key: 'x-sut-yemi', title: 'Süt ineğinde yem karışımı', topic: 'Besleme', minutes: '1:32' },
+    { key: 'x-buzagi-24saat', title: 'Buzağının ilk 24 saati', topic: 'Buzağı bakımı', minutes: '0:52' },
+    { key: 'x-buzagi-ishal', title: 'Buzağı ishal oldu: sütü kesmeyin', topic: 'Buzağı sağlığı', minutes: '0:58' },
+    { key: 'x-buzagi-yemi', title: 'Buzağı yemi tarifi', topic: 'Besleme', minutes: '0:57' },
+  ],
+};
+export const extrasOf = (k: string) => EXTRAS[k] || [];
